@@ -15,7 +15,7 @@ host = 'database-2.cywfycditnf0.us-east-2.rds.amazonaws.com'
 port = 5432
 database_name = 'nick'
 rds_connection_string = f'{protocol}://{username}:{password}@{host}:{port}/{database_name}'
-engine = create_engine(rds_connection_string)
+# engine = create_engine(rds_connection_string)
 
 #################################################
 # Database Setup
@@ -23,12 +23,12 @@ engine = create_engine(rds_connection_string)
 
 
 # reflect an existing database into a new model
-Base = automap_base()
+# Base = automap_base()
 # reflect the tables
-Base.prepare(autoload_with=engine)
+# Base.prepare(autoload_with=engine)
 
 # Save reference to the table
-Passenger = Base.classes.test
+# Passenger = Base.classes.test
 
 #################################################
 # Flask Setup
@@ -53,18 +53,18 @@ def welcome():
 @app.route("/api/v1.0/names")
 def names():
     # Create our session (link) from Python to the DB
-    session = Session(engine)
+    # session = Session(engine)
 
-    """Return a list of all passenger names"""
-    # Query all passengers
-    results = session.query(Passenger.person).all()
+    # """Return a list of all passenger names"""
+    # # Query all passengers
+    # results = session.query(Passenger.person).all()
 
-    session.close()
+    # session.close()
 
-    # Convert list of tuples into normal list
-    all_names = list(np.ravel(results))
+    # # Convert list of tuples into normal list
+    # all_names = list(np.ravel(results))
 
-    return jsonify(all_names)
+    return jsonify(['nick'])
 
 if __name__ == '__main__':
     app.run()
